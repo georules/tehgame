@@ -13,14 +13,16 @@ public class DisplayExample {
 	public static World state;
 	
 	public void start() {
-			
+		
 		GameLoop.run();
+		
+		World.controls.stop();
+		World.physics.stop();
 	
 		World.exe.shutdown();
 		try {
 			World.exe.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

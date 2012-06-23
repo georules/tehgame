@@ -31,7 +31,7 @@ public class Controls implements Runnable{
 		World.myThing.move(x,y);
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			World.myThing.rot(0.0f);
+			World.myThing.stop();
 		}
 			
 		if (Mouse.isButtonDown(0)) {
