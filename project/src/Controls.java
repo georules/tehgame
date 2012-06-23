@@ -10,6 +10,8 @@ public class Controls implements Runnable{
 
 	private boolean runit;
 	
+	private boolean clicked = true;
+	
 	public void update()	{
 		updateControls();
 		pollInput();
@@ -37,10 +39,20 @@ public class Controls implements Runnable{
 		if (Mouse.isButtonDown(0)) {
 		    int mousex = Mouse.getX();
 		    int mousey = Mouse.getY();
+		    /*mousex -= 800/2;
+		    mousey -= 600/2;*/
+		    
+		    
 		    boolean picked = pickObject(mousex,mousey);
-		    if(!picked) {
+		    if((!picked) && (clicked)) {
 		    	makeThing((float)mousex,(float)mousey);
 		    }
+		    World.myThing.moveTo(mousex,mousey);
+		    System.out.println(World.myThing);
+			clicked = false;
+		}
+		else{
+			clicked = true;
 		}
 	}
 	
@@ -83,7 +95,7 @@ public class Controls implements Runnable{
 		    int x = Mouse.getX();
 		    int y = Mouse.getY();
 	 
-		    System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
+		    //System.out.println("MOUSE DOWN @ X: " + x + " Y: " + y);
 		}
 	 
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {

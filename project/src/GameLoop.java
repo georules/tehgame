@@ -7,6 +7,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
 
 
 public class GameLoop {
@@ -21,12 +22,21 @@ public class GameLoop {
 		}
 		fps++;
 	}
-	
+
 	public static void initGL()	{		
+		// to do 3d, will need to implement raytracing for picking objects
+		// http://schabby.de/picking-opengl-ray-tracing/
+		
+		GL11.glViewport(0,0,800,600);
+		
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 0, 600, 1, -1);
+		GL11.glClearColor(0.3f,0.7f,0.9f,0.0f);
+		GL11.glOrtho(0, 800, 0, 600, -500, 500);
+		//GLU.gluPerspective(45f,(800.0f/600.0f),1f,100f);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glLoadIdentity();
+		//GLU.gluLookAt(800/2,600/2,100, 800/2,600/2,0, 0,1,1);
 	}
 	
 	public static void renderGL()	{

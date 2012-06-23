@@ -9,7 +9,7 @@ public class Thing {
 	private float r,g,b;
 	
 	public String toString() {
-		return super.toString() + " " + location.v1 + " " + location.v2 + " " + rot + " " + rotspeed+ " " + xvel + " " + yvel;
+		return super.toString() + " " + location.v1 + " " + location.v2 + " " + location.v3 +" " + rot + " " + rotspeed+ " " + xvel + " " + yvel;
 	}
 	
 	Thing()	{
@@ -18,10 +18,12 @@ public class Thing {
 	Thing(float x, float y) {
 		location.v1 = x;
 		location.v2 = y;
+		location.v3 = -10.0f;
 		randomColors();
 	}
 	public boolean hit(int x, int y) {
-		if ((Math.abs(location.v1-x) < 50) && (Math.abs(location.v2-y)<50)) {
+		int area = 60;
+		if ((Math.abs(location.v1-x) < area) && (Math.abs(location.v2-y)<area)) {
 			return true;
 		}
 		return false;
@@ -31,6 +33,10 @@ public class Thing {
 		r = (float)Math.random();
 		g = (float)Math.random();
 		b = (float)Math.random();
+		r = (r+0.5f) / 1.5f;
+		g = (g+0.5f) / 1.5f;
+		b = (b+0.5f) / 1.5f;
+		
 	}
 	
 	public void move(float vx,float vy) {
@@ -77,10 +83,10 @@ public class Thing {
 			GL11.glTranslatef(-location.v1, -location.v2, -location.v3);
  
 			GL11.glBegin(GL11.GL_QUADS);
-				GL11.glVertex2f(location.v1 - 50, location.v2 - 50);
-				GL11.glVertex2f(location.v1 + 50, location.v2 - 50);
-				GL11.glVertex2f(location.v1 + 50, location.v2 + 50);
-				GL11.glVertex2f(location.v1 - 50, location.v2 + 50);
+				GL11.glVertex3f(location.v1 - 50, location.v2 - 50, location.v3);
+				GL11.glVertex3f(location.v1 + 50, location.v2 - 50, location.v3);
+				GL11.glVertex3f(location.v1 + 50, location.v2 + 50, location.v3);
+				GL11.glVertex3f(location.v1 - 50, location.v2 + 50, location.v3);
 			GL11.glEnd();
 		GL11.glPopMatrix();
 	}
@@ -96,6 +102,15 @@ public class Thing {
 		if (xvel > 0) {
 			xvel -= dampen;
 		}
+		
+	}
+
+	public void moveTo(float x, float y) {
+		location.v1 = x;
+		location.v2 = y;
+		location.v3 = 10 * World.things.size();
+		yvel = 0;
+		xvel = 0;
 		
 	}
 }
