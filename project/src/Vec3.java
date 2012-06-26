@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public class Vec3 {
+
+public class Vec3 implements Serializable{
 	public float v1,v2,v3;
 	public Vec3() {
 		v1 = 0;

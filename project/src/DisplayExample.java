@@ -13,9 +13,15 @@ public class DisplayExample {
 	public static World state;
 	
 	public void start() {
+		System.out.println("Here");
+		Network network = new Network();
+		Thread net = new Thread(network);
+		World.threads.add(net);
+		System.out.println("Here2");
 		
 		GameLoop.run();
 		
+		network.stop();
 		World.controls.stop();
 		World.physics.stop();
 	

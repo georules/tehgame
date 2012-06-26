@@ -48,7 +48,7 @@ public class Controls implements Runnable{
 		    	makeThing((float)mousex,(float)mousey);
 		    }
 		    World.myThing.moveTo(mousex,mousey);
-		    System.out.println(World.myThing);
+		    //System.out.println(World.myThing);
 			clicked = false;
 		}
 		else{

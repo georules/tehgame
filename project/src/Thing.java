@@ -1,25 +1,45 @@
+import java.io.Serializable;
+import java.util.Random;
+
 import org.lwjgl.opengl.GL11;
 
 
-public class Thing {
+public class Thing implements Serializable{
+	public String hash;
 	public Vec3 location = new Vec3(400,300,0);
 	public Vec3 velocity = new Vec3(0,0,0);
 	private float rot = 0, rotspeed = 0;
-	private float xvel, yvel;
+	public float xvel, yvel;
 	private float r,g,b;
+
 	
 	public String toString() {
-		return super.toString() + " " + location.v1 + " " + location.v2 + " " + location.v3 +" " + rot + " " + rotspeed+ " " + xvel + " " + yvel;
+		return super.toString() + " " + hash + " " + location.v1 + " " + location.v2 + " " + location.v3 +" " + rot + " " + rotspeed+ " " + xvel + " " + yvel;
 	}
 	
 	Thing()	{
 		randomColors();
+		setHash();
+	}
+	Thing(Thing x) {
+		hash = x.hash;
+		location = x.location;
+		r = x.r;
+		b = x.b;
+		g = x.g;
 	}
 	Thing(float x, float y) {
 		location.v1 = x;
 		location.v2 = y;
-		location.v3 = -10.0f;
+		location.v3 = 500.0f;
 		randomColors();
+		setHash();
+	}
+	public void setHash() {
+		Random rand = new Random();
+		Integer i = new Integer(rand.nextInt(500));
+		hash = i.toString();
+		System.out.println(this);
 	}
 	public boolean hit(int x, int y) {
 		int area = 60;

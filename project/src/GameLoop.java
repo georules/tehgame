@@ -33,10 +33,10 @@ public class GameLoop {
 		GL11.glLoadIdentity();
 		GL11.glClearColor(0.3f,0.7f,0.9f,0.0f);
 		GL11.glOrtho(0, 800, 0, 600, -500, 500);
-		//GLU.gluPerspective(45f,(800.0f/600.0f),1f,100f);
+		//GLU.gluPerspective(45f,(800.0f/600.0f),1f,1000f);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
-		//GLU.gluLookAt(800/2,600/2,100, 800/2,600/2,0, 0,1,1);
+		//GLU.gluLookAt(800/2,600/2,1000, 800/2,600/2,0, 0,1,1);
 	}
 	
 	public static void renderGL()	{
