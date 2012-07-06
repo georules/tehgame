@@ -10,7 +10,7 @@ public class World {
 	public static Thing myThing;
 	public static CopyOnWriteArrayList<Thing> things;
 	public static CopyOnWriteArrayList<Thread> threads;
-	public static ExecutorService exe; 
+	public static ExecutorService exe;
 	
 	World() {
 		Runtime r = Runtime.getRuntime();
@@ -23,5 +23,8 @@ public class World {
 		things = new CopyOnWriteArrayList<Thing>();
 		myThing = new Thing();
 		things.add(myThing);
+	}
+	public static void addThread(Thread t) {
+		World.threads.add(t);
 	}
 }

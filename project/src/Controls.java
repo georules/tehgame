@@ -14,7 +14,7 @@ public class Controls implements Runnable{
 	
 	public void update()	{
 		updateControls();
-		pollInput();
+		//pollInput();
 	}
 	
 	private void updateControls() {
