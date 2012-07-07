@@ -184,74 +184,18 @@ public class Game extends DesktopArea {
       
 
             scrollPane = new ScrollPane(editField);
-           // scrollPane.setFixed(ScrollPane.Fixed.HORIZONTAL);
-           // scrollPane.setContent(editField);
-       
+            scrollPane.setFixed(ScrollPane.Fixed.HORIZONTAL);
+          
 
             DialogLayout l = new DialogLayout();
             l.setTheme("content");
+            
             l.setHorizontalGroup(l.createParallelGroup(scrollPane));
             l.setVerticalGroup(l.createSequentialGroup(scrollPane));
 
             add(l);
-
-            appendRow("default", "Welcome to the chat demo. Type your messages below :)");
         }
-
-        private void appendRow(String font, String text) {
-            sb.append("<div style=\"word-wrap: break-word; font-family: ").append(font).append("; \">");
-            // not efficient but simple
-            for(int i=0,l=text.length() ; i<l ; i++) {
-                char ch = text.charAt(i);
-                switch(ch) {
-                    case '<': sb.append("&lt;"); break;
-                    case '>': sb.append("&gt;"); break;
-                    case '&': sb.append("&amp;"); break;
-                    case '"': sb.append("&quot;"); break;
-                    case ':':
-                        if(text.startsWith(":)", i)) {
-                            sb.append("<img src=\"smiley\" alt=\":)\"/>");
-                            i += 1; // skip one less because of i++ in the for loop
-                            break;
-                        }
-                        sb.append(ch);
-                        break;
-                    case 'h':
-                        if(text.startsWith("http://", i)) {
-                            int end = i + 7;
-                            while(end < l && isURLChar(text.charAt(end))) {
-                                end++;
-                            }
-                            String href = text.substring(i, end);
-                            sb.append("<a style=\"font: link\" href=\"").append(href)
-                                    .append("\" >").append(href)
-                                    .append("</a>");
-                            i = end - 1; // skip one less because of i++ in the for loop
-                            break;
-                        }
-                        // fall through:
-                    default:
-                        sb.append(ch);
-                }
-            }
-            sb.append("</div>");
-
-            boolean isAtEnd = scrollPane.getMaxScrollPosY() == scrollPane.getScrollPositionY();
-
-            textAreaModel.setHtml(sb.toString());
-
-            if(isAtEnd) {
-                scrollPane.validateLayout();
-                scrollPane.setScrollPositionY(scrollPane.getMaxScrollPosY());
-            }
-        }
-
-        private boolean isURLChar(char ch) {
-            return (ch == '.') || (ch == '/') || (ch == '%') ||
-                    (ch >= '0' && ch <= '9') ||
-                    (ch >= 'a' && ch <= 'z') ||
-                    (ch >= 'A' && ch <= 'Z');
-        }
+ 
     }
 
 }
