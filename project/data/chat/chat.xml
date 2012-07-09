@@ -168,14 +168,14 @@
         <param name="autocompletion-height"><int>150</int></param>
     </theme>
 
-    <theme name="game" ref="-defaults">
+    <theme name="hud" ref="-defaults">
         
 
         <theme name="fpscounter" ref="-defaults">
             <param name="tooltip"><string>Current FPS</string></param>
         </theme>
 
-        <theme name="chatframe" ref="resizableframe">
+        <theme name="inputframe" ref="resizableframe">
             <theme name="content" ref="-defaults">
                 <param name="defaultGap"><dimension>5,5</dimension></param>
                 <param name="smallGap"><dimension>8,8</dimension></param>
