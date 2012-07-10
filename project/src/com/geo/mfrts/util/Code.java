@@ -31,7 +31,7 @@ public class Code {
 		sb.append("public class " + className + " extends Thing {\n");
 		sb.append(method);
 		String date = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss").format(new Date());
-		sb.append("public String toString() {return \"" + date + "\";}");
+		sb.append("public String toString() {return \"" + date + " \" + this.location.v3;}");
 		sb.append("}");
 		System.out.println(sb.toString());
 		return sb.toString();

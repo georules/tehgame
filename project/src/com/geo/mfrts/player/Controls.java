@@ -14,7 +14,7 @@ import com.geo.mfrts.util.Timer;
 public class Controls implements Runnable{
 	
 	private long makeStat1, makeStat2; 
-	private long makeLimit = 400;
+	private long makeLimit = 100;
 
 	private boolean runit;
 	
@@ -27,6 +27,12 @@ public class Controls implements Runnable{
 	
 	private void updateControls() {
 		float x= 0,y=0,rot = 0;
+		if (Keyboard.isKeyDown(Keyboard.KEY_C)) {
+		    System.out.println(World.things.size());
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_G)) {
+		    World.go = true;
+		}
  
 		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) x = -1;
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) x = 1;
@@ -43,7 +49,7 @@ public class Controls implements Runnable{
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			World.myThing.stop();
 		}
-		if (Mouse.isButtonDown(0)) {
+		if (Mouse.isButtonDown(0) || Keyboard.isKeyDown(Keyboard.KEY_N)) {
 			
 		    int mousex = Mouse.getX();
 		    int mousey = Mouse.getY();
@@ -53,7 +59,6 @@ public class Controls implements Runnable{
 		    	makeThing((float)mousex,(float)mousey);
 		    }
 		    World.myThing.moveTo(mousex,mousey);
-		    //System.out.println(World.myThing);
 			clicked = false;
 		}
 		else{

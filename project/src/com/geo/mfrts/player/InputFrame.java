@@ -23,7 +23,7 @@ class InputFrame extends ResizableFrame {
         this.textArea = new TextArea(textAreaModel);
         this.editField = new EditField();
         this.editField.setMultiLine(true);
-        this.editField.setText("//Code here\npublic void render() {\n\trandomColors();\n\tsuper.render();\n}\n");
+        this.editField.setText("//Code here\npublic void render() {\n  super.render();\n}\n");
 
         scrollPane = new ScrollPane(editField);
         scrollPane.setFixed(ScrollPane.Fixed.HORIZONTAL);

@@ -19,15 +19,13 @@ public class Thing implements Serializable{
 
 	
 	public String toString() {
-		return super.toString() + " " + hash + " " + location.v1 + " " + location.v2 + " " + location.v3 +" " + rot + " " + rotspeed+ " " + xvel + " " + yvel;
+		return super.toString() + " x " + location.v1 + " y " + location.v2 + " z " + location.v3;
 	}
 	
 	public Thing()	{
 		randomColors();
-		setHash();
 	}
 	public Thing(Thing x) {
-		hash = x.hash;
 		location = x.location;
 		r = x.r;
 		b = x.b;
@@ -36,18 +34,11 @@ public class Thing implements Serializable{
 	public Thing(float x, float y) {
 		location.v1 = x;
 		location.v2 = y;
-		location.v3 = 500.0f;
+		location.v3 = 100.0f;
 		randomColors();
-		setHash();
-	}
-	public void setHash() {
-		Random rand = new Random();
-		Integer i = new Integer(rand.nextInt(500));
-		hash = i.toString();
-		System.out.println(this);
 	}
 	public boolean hit(int x, int y) {
-		int area = 60;
+		int area = 25;
 		if ((Math.abs(location.v1-x) < area) && (Math.abs(location.v2-y)<area)) {
 			return true;
 		}
@@ -61,7 +52,11 @@ public class Thing implements Serializable{
 		r = (r+0.5f) / 1.5f;
 		g = (g+0.5f) / 1.5f;
 		b = (b+0.5f) / 1.5f;
-		
+	}
+	public void setColor(float red, float green, float blue) {
+		r = red;
+		g = green;
+		b = blue;
 	}
 	
 	public void move(float vx,float vy) {
@@ -110,10 +105,10 @@ public class Thing implements Serializable{
 			GL11.glTranslatef(-location.v1, -location.v2, -location.v3);
  
 			GL11.glBegin(GL11.GL_QUADS);
-				GL11.glVertex3f(location.v1 - 50, location.v2 - 50, location.v3);
-				GL11.glVertex3f(location.v1 + 50, location.v2 - 50, location.v3);
-				GL11.glVertex3f(location.v1 + 50, location.v2 + 50, location.v3);
-				GL11.glVertex3f(location.v1 - 50, location.v2 + 50, location.v3);
+				GL11.glVertex3f(location.v1 - 20, location.v2 - 20, location.v3);
+				GL11.glVertex3f(location.v1 + 20, location.v2 - 20, location.v3);
+				GL11.glVertex3f(location.v1 + 20, location.v2 + 20, location.v3);
+				GL11.glVertex3f(location.v1 - 20, location.v2 + 20, location.v3);
 			GL11.glEnd();
 		GL11.glPopMatrix();
 	}
@@ -135,7 +130,7 @@ public class Thing implements Serializable{
 	public void moveTo(float x, float y) {
 		location.v1 = x;
 		location.v2 = y;
-		location.v3 = 10 * World.things.size();
+		//location.v3 = 10 * World.things.size();
 		yvel = 0;
 		xvel = 0;
 		

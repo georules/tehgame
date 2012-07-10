@@ -1,6 +1,7 @@
 package com.geo.mfrts;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,9 +13,10 @@ import com.geo.mfrts.player.Controls;
 public class World {
 	public static Controls controls;
 	public static Thing myThing;
-	public static ArrayList<Thing> things;
+	public static CopyOnWriteArrayList<Thing> things;
 	public static CopyOnWriteArrayList<Thread> threads;
 	public static ExecutorService exe;
+	public static boolean go = false;
 	
 	World() {
 		Runtime r = Runtime.getRuntime();
@@ -23,8 +25,14 @@ public class World {
 		
 		controls = new Controls();
 	
-		things = new ArrayList<Thing>();
+		things = new CopyOnWriteArrayList<Thing>();
 		myThing = new Thing();
+		for (int i = 0; i < 50; i++) {
+			Random rand = new Random();
+			float x = rand.nextFloat()*800;
+			float y = rand.nextFloat()*600;
+			things.add(new Thing(x,y));
+		}
 		things.add(myThing);
 	}
 	

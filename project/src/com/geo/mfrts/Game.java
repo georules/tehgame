@@ -56,7 +56,7 @@ public class Game {
 		// Init OpenGL
 		try {
 			Display.setDisplayMode(new DisplayMode(1200,800));
-			Display.setResizable(true);
+			Display.setResizable(false);
 			Display.setVSyncEnabled(true);
 			Display.setTitle("MF GAME");
 			Display.create();
@@ -68,7 +68,7 @@ public class Game {
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glClearColor(0.3f,0.7f,0.9f,0.0f);
-		GL11.glOrtho(0, 1200, 0, 800, -500, 500);
+		GL11.glOrtho(0, 1200, 0, 800, -1000, 500);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 	}
@@ -112,6 +112,12 @@ public class Game {
 	
 		for (Thread t : World.threads) {
 			World.exe.execute(t);
+		}
+		while(!World.go) {
+			Timer.update();
+			World.update();
+			renderGL();
+			Display.update();
 		}
 		
 		while (!Display.isCloseRequested()) {
