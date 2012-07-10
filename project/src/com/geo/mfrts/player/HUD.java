@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -15,6 +16,7 @@ import org.lwjgl.util.glu.GLU;
 import org.newdawn.slick.tests.TestUtils;
 
 import com.geo.mfrts.Game;
+import com.geo.mfrts.World;
 import com.geo.mfrts.objects.Thing;
 import com.geo.mfrts.util.Timer;
 
@@ -54,14 +56,13 @@ public class HUD extends DesktopArea {
 		this.keyboardFocusLost();
 	}
 	 @Override
-	protected boolean handleEvent(Event evt) {
+	protected boolean handleEvent(Event evt) {	
 	    if(super.handleEvent(evt)) {
-	       // return true;
+	       return true;
 	    }
 	    
 	    return false;
 	}
-
 
 	public void init() {
 		// Init GUI

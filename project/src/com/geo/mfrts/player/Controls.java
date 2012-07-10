@@ -81,6 +81,7 @@ public class Controls implements Runnable{
 			String code = Game.hud.getText();
 			System.out.println("Sending code:"+code);
 			Thing woot = Code.newThing(code,x, y);
+			//World.things = new ArrayList<Thing>();
 			World.things.add(woot);
 			World.myThing = woot;
 			System.out.println(woot);

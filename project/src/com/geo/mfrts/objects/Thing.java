@@ -67,6 +67,8 @@ public class Thing implements Serializable{
 	public void move(float vx,float vy) {
 		xvel += vx*0.02;
 		yvel += vy*0.02;
+		/*location.v1 += vx;
+		location.v2 += vy;*/
 	}
 	
 	public void stop()	{

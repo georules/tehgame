@@ -36,12 +36,14 @@ public class Game {
 	
 	public static World state;
 	public static Game game;
+	public static Physics physics;
 
 	public static HUD hud; // I want to change this to a player later maybe
 
 	public static void main(String[] argv) {
 		game = new Game();
 		state = new World();
+		physics = new Physics();
 		hud = new HUD();
 
 		game.init();	// Get things going
@@ -115,6 +117,7 @@ public class Game {
 		while (!Display.isCloseRequested()) {
 			Timer.update();
 			World.update();
+			physics.update();
 			renderGL();
 			hud.update();
 			Display.update();
